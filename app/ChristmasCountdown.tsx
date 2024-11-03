@@ -31,7 +31,7 @@ const ChristmasCountdown = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center text-center">
+    <div className="flex flex-col items-center justify-center text-center text-black">
       <div className="text-3xl font-bold mb-4">
         Kerst begint over
       </div>
