@@ -2,34 +2,29 @@
 
 import { useState, useEffect } from 'react';
 
+const calculateTimeLeft = () => {
+  const now = new Date();
+  const christmasDate = new Date(now.getFullYear(), 11, 25);
+  
+  if (now > christmasDate) {
+    christmasDate.setFullYear(christmasDate.getFullYear() + 1);
+  }
+
+  const difference = christmasDate.getTime() - now.getTime();
+
+  return {
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+  };
+};
+
 const ChristmasCountdown = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0
-  });
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft()); // Calculate immediately
 
   useEffect(() => {
     const timer = setInterval(() => {
-      // Create date objects in Netherlands timezone
-      const now = new Date();
-      // Set to December 25th at 00:00:00
-      const christmasDate = new Date(now.getFullYear(), 11, 25);
-      
-      // If Christmas has passed this year, set for next year
-      if (now > christmasDate) {
-        christmasDate.setFullYear(christmasDate.getFullYear() + 1);
-      }
-
-      // Get time difference in milliseconds
-      const difference = christmasDate.getTime() - now.getTime();
-
-      // Convert to days, hours, minutes
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-
-      setTimeLeft({ days, hours, minutes });
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(timer);
