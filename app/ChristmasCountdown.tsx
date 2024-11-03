@@ -38,7 +38,7 @@ const ChristmasCountdown = () => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <div className="text-3xl font-bold mb-4">
-        Christmas celebration begins in
+        Kerst begint op
       </div>
       <div className="flex gap-4">
         <div className="bg-[#B4E9E2] p-4 rounded-md w-20">
