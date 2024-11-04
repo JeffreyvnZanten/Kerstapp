@@ -1,6 +1,6 @@
 // app/login/page.tsx
 'use client'
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { LoginCredentials } from '@/app/types/auth';
 
 export default function LoginForm() {

@@ -1,6 +1,6 @@
 // app/api/auth/route.ts
 import { NextResponse } from 'next/server';
-import { LoginCredentials, LoginResponse } from '@/app/types/auth';
+import { LoginCredentials } from '@/app/types/auth';
 
 export async function POST(request: Request) {
     console.log('API route hit'); // Server-side log
