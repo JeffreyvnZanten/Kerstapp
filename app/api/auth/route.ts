@@ -1,6 +1,6 @@
 // app/api/auth/route.ts
 import { NextResponse } from 'next/server';
-import { LoginCredentials } from '@/app/types/auth';
+import { LoginCredentials, LoginResponse } from '@/app/types/auth';
 
 export async function POST(request: Request) {
     console.log('API route hit'); // Server-side log
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
             console.log('Login successful for:', username); // Server-side log
             return NextResponse.json({ 
                 success: true,
-                message: 'Welkom ${username}'
+                message: `Welkom, ${username}`  // Add the username to the message
             });
         }
 

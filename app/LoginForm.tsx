@@ -11,6 +11,7 @@ export default function LoginForm() {
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [debugInfo, setDebugInfo] = useState<string>(''); // Add this for debugging
+    const [welcomeMessage, setWelcomeMessage] = useState<string>('');
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -35,7 +36,8 @@ export default function LoginForm() {
             
             if (data.success) {
                 setDebugInfo('Login successful!');
-                // Handle successful login
+                setWelcomeMessage(data.message);  // This will show "Welkom, username"
+                
             } else {
                 setError(data.message || 'Login failed');
                 setDebugInfo(`Login failed: ${data.message}`);
@@ -82,7 +84,11 @@ export default function LoginForm() {
                     required
                 />
             </div>
-
+            {welcomeMessage && (
+                <div className="bg-green-500 text-white p-3 rounded-md mt-2" role="alert">
+                    {welcomeMessage}
+                </div>
+            )}
             {error && (
                 <div className="bg-red-500 text-white p-3 rounded-md mt-2" role="alert">
                     {error}
