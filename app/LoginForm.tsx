@@ -81,6 +81,7 @@ export default function LoginForm() {
                     value={formData.password}
                     onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                     className="px-3 py-2 rounded"
+                    inputMode="text" 
                     required
                 />
             </div>
