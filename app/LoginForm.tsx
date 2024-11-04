@@ -49,7 +49,6 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         setLoading(false);
     }
 };
-
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <h1 className='text-white text-2xl font-bold'>Log in</h1>
