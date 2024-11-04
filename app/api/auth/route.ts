@@ -37,7 +37,7 @@ export async function POST(request: Request) {
             console.log('Login successful for:', username); // Server-side log
             return NextResponse.json({ 
                 success: true,
-                message: 'Login successful'
+                message: 'Welkom ${username}'
             });
         }
 
