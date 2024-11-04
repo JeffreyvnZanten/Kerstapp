@@ -19,36 +19,36 @@ export default function LoginForm() {
         }));
     };
 
-// app/login/page.tsx
-const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+        
+        try {
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
     
-    try {
-        const response = await fetch('/api/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        const data: LoginResponse = await response.json();
-        
-        if (data.success) {
-            console.log('Login successful');
-            // Add redirect or other success handling here
-        } else {
-            setError(data.message || 'Login failed');
+            const data = await response.json();
+            
+            if (data.success) {
+                console.log('Login successful');
+                // Add your success handling here
+            } else {
+                // Always show the error message from the server
+                setError(data.message || 'Login failed');
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            setError('Connection error - please try again');
+        } finally {
+            setLoading(false);
         }
-    } catch (err) {
-        console.error('Login error:', err);
-        setError(err instanceof Error ? err.message : 'An unexpected error occurred during login');
-    } finally {
-        setLoading(false);
-    }
-};
+    };
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <h1 className='text-white text-2xl font-bold'>Log in</h1>
@@ -86,16 +86,18 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
             </div>
 
             {error && (
-                <p className="text-red-500">{error}</p>
-            )}
-            
-            <button 
-                type="submit" 
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50"
-                disabled={loading}
-            >
-                {loading ? 'Logging in...' : 'Login'}
-            </button>
-        </form>
-    );
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span className="block sm:inline">{error}</span>
+            </div>
+        )}
+
+        <button 
+            type="submit" 
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50"
+            disabled={loading}
+        >
+            {loading ? 'Logging in...' : 'Login'}
+        </button>
+    </form>
+);
 }
