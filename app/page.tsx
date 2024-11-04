@@ -2,7 +2,8 @@
 
 import { useSession, signIn, signOut } from 'next-auth/react'
 import ChristmasCountdown from './ChristmasCountdown'
-// import Snowfall from 'react-snowfall'
+import Snowfall from 'react-snowfall'
+// import Snowfall from './Snowfall'
 
 export default function Home() {
   const { data: session, status } = useSession()
@@ -18,15 +19,16 @@ export default function Home() {
   if (session) {
     return (
       <div className="bg-[url('/xmas3.webp')] bg-cover bg-center bg-no-repeat min-h-screen w-full fixed inset-0">
-        {/* <Snowfall 
-          snowflakeCount={200}
+        <Snowfall 
+          snowflakeCount={400}
           style={{
             position: 'fixed',
             width: '100vw',
             height: '100vh',
             zIndex: 1
           }}
-        /> */}
+        />
+        {/* <Snowfall /> */}
         <div className="flex flex-col items-center justify-center min-h-screen space-y-4 p-4">
           <div className="bg-white/80 p-8 rounded-xl backdrop-blur-sm shadow-lg">
             <ChristmasCountdown />
@@ -45,15 +47,16 @@ export default function Home() {
 
   return (
     <div className="bg-[url('/xmas3.webp')] bg-cover bg-center bg-no-repeat min-h-screen w-full fixed inset-0">
-      {/* <Snowfall 
-        snowflakeCount={200}
+      <Snowfall 
+        snowflakeCount={400}
         style={{
           position: 'fixed',
           width: '100vw',
           height: '100vh',
           zIndex: 1
         }}
-      /> */}
+      />
+      {/* <Snowfall /> */}
       <div className="flex flex-col items-center justify-center min-h-screen space-y-4 p-4">
           <div className="overlay-bg p-8 rounded-xl backdrop-blur-sm shadow-lg">
           <ChristmasCountdown />
