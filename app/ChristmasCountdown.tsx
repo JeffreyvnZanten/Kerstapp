@@ -36,15 +36,15 @@ const ChristmasCountdown = () => {
         Kerst begint over
       </div>
       <div className="flex gap-4">
-        <div className="bg-[#B4E9E2] p-4 rounded-md w-20">
+        <div className="bg-[#006400] p-4 rounded-md w-20">
           <div className="text-2xl font-bold">{String(timeLeft.days).padStart(2, '0')}</div>
           <div className="text-sm">dagen</div>
         </div>
-        <div className="bg-[#B4E9E2] p-4 rounded-md w-20">
+        <div className="bg-[#006400] p-4 rounded-md w-20">
           <div className="text-2xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
           <div className="text-sm">uren</div>
         </div>
-        <div className="bg-[#B4E9E2] p-4 rounded-md w-20">
+        <div className="bg-[#006400] p-4 rounded-md w-20">
           <div className="text-2xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
           <div className="text-sm">minuten</div>
         </div>
