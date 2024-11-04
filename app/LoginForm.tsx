@@ -95,12 +95,12 @@ export default function LoginForm() {
                 </div>
             )}
 
-            {/* Debug info display */}
+            {/* Debug info display
             {debugInfo && (
                 <div className="bg-gray-800 text-white p-3 rounded-md mt-2 text-sm">
                     {debugInfo}
                 </div>
-            )}
+            )} */}
             
             <button 
                 type="submit" 
