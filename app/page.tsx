@@ -55,7 +55,7 @@ export default function Home() {
         }}
       /> */}
       <div className="flex flex-col items-center justify-center min-h-screen space-y-4 p-4">
-      <div className="bg-[rgba(255,255,255,0.8)] p-8 rounded-xl backdrop-blur-sm shadow-lg">
+          <div className="overlay-bg p-8 rounded-xl backdrop-blur-sm shadow-lg">
           <ChristmasCountdown />
           <div className="text-center mt-4 text-gray-800">Not signed in</div>
           <div className="space-y-4 mt-6 flex flex-col items-center"> {/* Added flex flex-col items-center */}            <button 

@@ -17,3 +17,24 @@ body {
   background: var(--background);
   font-family: 'Mountains of Christmas', Arial, Helvetica, sans-serif;
 }
+
+/* Standaard voor desktop */
+.overlay-bg {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* iOS devices */
+@supports (-webkit-touch-callout: none) {
+  .overlay-bg {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Android devices */
+@supports not (-webkit-touch-callout: none) {
+  @media screen and (max-width: 768px) {
+    .overlay-bg {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  }
+}
