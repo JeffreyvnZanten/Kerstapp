@@ -1,7 +1,7 @@
 // app/login/page.tsx
 'use client'
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { LoginCredentials, LoginResponse } from '@/app/types/auth';  // Changed this line
+import { LoginCredentials } from '@/app/types/auth';  // Changed this line
 
 export default function LoginForm() {
     const [formData, setFormData] = useState<LoginCredentials>({
