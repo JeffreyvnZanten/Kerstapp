@@ -1,3 +1,4 @@
+// app/login/page.tsx
 'use client'
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { LoginCredentials } from '@/app/types/auth';
@@ -9,23 +10,16 @@ export default function LoginForm() {
     });
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    const [debugInfo, setDebugInfo] = useState<string>(''); // Add this for debugging
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Form submitted with:', formData); // Debug log
         setError('');
+        setDebugInfo('Attempting login...'); // Debug info
         setLoading(true);
         
         try {
-            console.log('Sending request to /api/auth');
+            setDebugInfo('Sending request...'); // Debug info
             const response = await fetch('/api/auth', {
                 method: 'POST',
                 headers: {
@@ -34,20 +28,22 @@ export default function LoginForm() {
                 body: JSON.stringify(formData)
             });
 
-            console.log('Response status:', response.status); // Debug log
+            setDebugInfo(`Response status: ${response.status}`); // Debug info
+            
             const data = await response.json();
-            console.log('Response data:', data); // Debug log
+            setDebugInfo(`Response data: ${JSON.stringify(data)}`); // Debug info
             
             if (data.success) {
-                console.log('Login successful');
-                // Add your success handling here
+                setDebugInfo('Login successful!');
+                // Handle successful login
             } else {
-                console.log('Login failed:', data.message); // Debug log
                 setError(data.message || 'Login failed');
+                setDebugInfo(`Login failed: ${data.message}`);
             }
         } catch (err) {
-            console.error('Login error:', err); // Debug log
+            console.error('Login error:', err);
             setError('Connection error - please try again');
+            setDebugInfo(`Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
         } finally {
             setLoading(false);
         }
@@ -66,9 +62,8 @@ export default function LoginForm() {
                     name="username"
                     type="text"
                     value={formData.username}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
                     className="px-3 py-2 rounded"
-                    disabled={loading}
                     required
                 />
             </div>
@@ -82,22 +77,28 @@ export default function LoginForm() {
                     name="password"
                     type="password"
                     value={formData.password}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                     className="px-3 py-2 rounded"
-                    disabled={loading}
                     required
                 />
             </div>
 
             {error && (
-                <div className="bg-red-500 text-white p-3 rounded-md" role="alert">
+                <div className="bg-red-500 text-white p-3 rounded-md mt-2" role="alert">
                     {error}
+                </div>
+            )}
+
+            {/* Debug info display */}
+            {debugInfo && (
+                <div className="bg-gray-800 text-white p-3 rounded-md mt-2 text-sm">
+                    {debugInfo}
                 </div>
             )}
             
             <button 
                 type="submit" 
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50"
+                className={`w-full ${loading ? 'bg-blue-300' : 'bg-blue-500'} text-white py-2 px-4 rounded hover:bg-blue-600`}
                 disabled={loading}
             >
                 {loading ? 'Logging in...' : 'Login'}
