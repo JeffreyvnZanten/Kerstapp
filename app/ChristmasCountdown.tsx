@@ -49,7 +49,6 @@ const ChristmasCountdown = () => {
           <div className="text-sm">minuten</div>
         </div>
       </div>
-      <div className="mt-4 text-xl">Wees er klaar voor!</div>
     </div>
   );
 };

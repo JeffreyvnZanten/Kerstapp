@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import ChristmasCountdown from './ChristmasCountdown'
 import Snowfall from 'react-snowfall'
+import LoginForm from './LoginForm'
 // import Snowfall from './Snowfall'
 
 export default function Home() {
@@ -60,8 +61,9 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center min-h-screen space-y-4 p-4">
           <div className="overlay-bg p-8 rounded-xl backdrop-blur-sm shadow-lg">
           <ChristmasCountdown />
-          <div className="text-center mt-4 text-gray-800">Not signed in</div>
-          <div className="space-y-4 mt-6 flex flex-col items-center"> {/* Added flex flex-col items-center */}            <button 
+          <div className="space-y-4 mt-6 flex flex-col items-center"> {/* Added flex flex-col items-center */}    
+          <LoginForm />        
+            <button 
               onClick={() => signIn('google')}
               className="bg-red-800 text-white px-8 py-3 rounded-lg w-full max-w-xs font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
             >
