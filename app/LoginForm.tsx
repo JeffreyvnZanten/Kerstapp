@@ -1,7 +1,6 @@
-// app/login/page.tsx
 'use client'
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { LoginCredentials } from '@/app/types/auth';  // Changed this line
+import { LoginCredentials } from '@/app/types/auth';
 
 export default function LoginForm() {
     const [formData, setFormData] = useState<LoginCredentials>({
@@ -21,10 +20,12 @@ export default function LoginForm() {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log('Form submitted with:', formData); // Debug log
         setError('');
         setLoading(true);
         
         try {
+            console.log('Sending request to /api/auth');
             const response = await fetch('/api/auth', {
                 method: 'POST',
                 headers: {
@@ -32,23 +33,26 @@ export default function LoginForm() {
                 },
                 body: JSON.stringify(formData)
             });
-    
+
+            console.log('Response status:', response.status); // Debug log
             const data = await response.json();
+            console.log('Response data:', data); // Debug log
             
             if (data.success) {
                 console.log('Login successful');
                 // Add your success handling here
             } else {
-                // Always show the error message from the server
+                console.log('Login failed:', data.message); // Debug log
                 setError(data.message || 'Login failed');
             }
         } catch (err) {
-            console.error('Login error:', err);
+            console.error('Login error:', err); // Debug log
             setError('Connection error - please try again');
         } finally {
             setLoading(false);
         }
     };
+
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <h1 className='text-white text-2xl font-bold'>Log in</h1>
@@ -86,18 +90,18 @@ export default function LoginForm() {
             </div>
 
             {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <span className="block sm:inline">{error}</span>
-            </div>
-        )}
-
-        <button 
-            type="submit" 
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50"
-            disabled={loading}
-        >
-            {loading ? 'Logging in...' : 'Login'}
-        </button>
-    </form>
-);
+                <div className="bg-red-500 text-white p-3 rounded-md" role="alert">
+                    {error}
+                </div>
+            )}
+            
+            <button 
+                type="submit" 
+                className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50"
+                disabled={loading}
+            >
+                {loading ? 'Logging in...' : 'Login'}
+            </button>
+        </form>
+    );
 }
