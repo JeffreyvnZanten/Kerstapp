@@ -23,8 +23,8 @@ const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             authorization: {
                 params: {
-                    scope: 'https://www.googleapis.com/auth/cloud-platform.read-only' // of andere scope
-                }
+                    scope: 'openid email profile'  // Dit zijn de scopes die u in de Google Console heeft ingesteld
+                  }
             }
         }),
         CredentialsProvider({
