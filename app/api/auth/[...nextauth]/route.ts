@@ -65,29 +65,24 @@ const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ account, profile }) {
-            if (account?.scope) {
-                // Check of de scope correct is
-                const allowedScopes = [
-                    'https://www.googleapis.com/auth/cloud-platform.read-only',
-                    'https://www.googleapis.com/auth/gmail.readonly'
-                ];
-                return allowedScopes.includes(account.scope);
-            }
-            return false;
-        },
-        async jwt({ token, user }) {
-            if (user) {
-                token.id = user.id;
-            }
-            return token;
+          if (!account || !profile?.email) {
+            return false; // Geen account of email = geen toegang
+          }
+          return true;  // Account en email aanwezig = toegang
         },
         async session({ session, token }) {
-            if (session.user) {
-                session.user.id = token.id as string;
-            }
-            return session;
+          if (session.user) {
+            session.user.email = token.email;
+          }
+          return session;
+        },
+        async jwt({ token, account, profile }) {
+          if (account && profile) {
+            token.email = profile.email;
+          }
+          return token;
         }
-    },
+      }
 }
 
 const handler = NextAuth(authOptions);
