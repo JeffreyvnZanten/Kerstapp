@@ -22,7 +22,7 @@ export default function Home() {
     return (
       <div className="bg-[url('/xmas3.webp')] bg-cover bg-center bg-no-repeat min-h-screen w-full fixed inset-0">
         <Snowfall 
-          snowflakeCount={200}
+          snowflakeCount={100}
           style={{
             position: 'fixed',
             width: '100vw',
@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="bg-[url('/xmas3.webp')] bg-cover bg-center bg-no-repeat min-h-screen w-full fixed inset-0">
       <Snowfall 
-        snowflakeCount={200}
+        snowflakeCount={100}
         style={{
           position: 'fixed',
           width: '100vw',
