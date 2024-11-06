@@ -65,11 +65,8 @@ const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ account, profile }) {
-          if (!account || !profile?.email) {
-            return false; // Geen account of email = geen toegang
-          }
-          return true;  // Account en email aanwezig = toegang
-        },
+            return !!account && !!profile?.email;  // Alleen checken of er een account en email is
+          },
         async session({ session, token }) {
           if (session.user) {
             session.user.email = token.email;
