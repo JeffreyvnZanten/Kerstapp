@@ -21,6 +21,11 @@ const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            authorization: {
+                params: {
+                    scope: 'https://www.googleapis.com/auth/cloud-platform.read-only' // of andere scope
+                }
+            }
         }),
         CredentialsProvider({
             name: 'Credentials',
@@ -59,6 +64,17 @@ const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
+        async signIn({ account, profile }) {
+            if (account?.scope) {
+                // Check of de scope correct is
+                const allowedScopes = [
+                    'https://www.googleapis.com/auth/cloud-platform.read-only',
+                    'https://www.googleapis.com/auth/gmail.readonly'
+                ];
+                return allowedScopes.includes(account.scope);
+            }
+            return false;
+        },
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
