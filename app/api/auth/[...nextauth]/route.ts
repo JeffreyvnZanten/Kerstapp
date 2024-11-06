@@ -65,8 +65,16 @@ const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ account, profile }) {
-            return !!account && !!profile?.email;  // Alleen checken of er een account en email is
-          },
+            if (!account || !profile?.email) {
+              return false;
+            }
+      
+            // Haal de emails uit .env.local en maak er een array van
+            const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
+            
+            // Check of de email in de whitelist staat
+            return allowedEmails.includes(profile.email);
+        },
         async session({ session, token }) {
           if (session.user) {
             session.user.email = token.email;
