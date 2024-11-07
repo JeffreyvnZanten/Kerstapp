@@ -34,7 +34,6 @@ export default function LoginForm() {
         <CredentialsLogin />
         <DividerAuth />
         <GoogleLogin />
-        <FacebookLogin />
 
         {debugInfo && (
             <div className="bg-gray-800 text-white p-3 rounded-md text-sm mt-4 w-full max-w-xs">
