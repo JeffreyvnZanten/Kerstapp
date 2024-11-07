@@ -5,6 +5,7 @@ import { useState } from 'react'
 import CredentialsLogin from './CredentialsLogin'
 import DividerAuth from './DividerAuth'
 import GoogleLogin from './GoogleLogin'
+import FacebookLogin from './FacebookLogin'
 
 export default function LoginForm() {
   const { data: session, status } = useSession()
@@ -26,19 +27,20 @@ export default function LoginForm() {
 
   return (
     <div className="space-y-4 mt-6 flex flex-col items-center">
-      <div className="text-sm text-gray-500">
-        Huidige status: {status}
-      </div>
-      
-      <CredentialsLogin />
-      <DividerAuth />
-      <GoogleLogin />
-
-      {debugInfo && (
-        <div className="bg-gray-800 text-white p-3 rounded-md text-sm mt-4 w-full max-w-xs">
-          {debugInfo}
+        <div className="text-sm text-gray-500">
+            Huidige status: {status}
         </div>
-      )}
+        
+        <CredentialsLogin />
+        <DividerAuth />
+        <GoogleLogin />
+        <FacebookLogin />
+
+        {debugInfo && (
+            <div className="bg-gray-800 text-white p-3 rounded-md text-sm mt-4 w-full max-w-xs">
+                {debugInfo}
+            </div>
+        )}
     </div>
-  )
+    )
 }

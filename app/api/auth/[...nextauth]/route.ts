@@ -1,6 +1,8 @@
 import NextAuth, { DefaultSession, NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
+import FacebookProvider from "next-auth/providers/facebook";
+
 
 console.log("Environment check:");
 console.log("NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
@@ -23,7 +25,17 @@ const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             authorization: {
                 params: {
-                    scope: 'openid email profile'  // Dit zijn de scopes die u in de Google Console heeft ingesteld
+                    scope: 'openid email profile' 
+                  }
+            }
+        }),
+        // Voeg deze toe aan de providers array in authOptions:
+        FacebookProvider({
+            clientId: process.env.FACEBOOK_CLIENT_ID!,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+            authorization: {
+                params: {
+                    scope: 'openid email profile' 
                   }
             }
         }),
@@ -69,10 +81,8 @@ const authOptions: NextAuthOptions = {
               return false;
             }
       
-            // Haal de emails uit .env.local en maak er een array van
             const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
             
-            // Check of de email in de whitelist staat
             return allowedEmails.includes(profile.email);
         },
         async session({ session, token }) {
