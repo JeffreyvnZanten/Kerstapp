@@ -77,27 +77,40 @@ const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ account, profile }) {
-            if (!account || !profile?.email) {
-              return false;
+            // Als het credentials login is (geen account/profile), sta toe
+            if (!account) {
+                return true;
             }
-      
-            const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
-            
-            return allowedEmails.includes(profile.email);
+    
+            // Voor OAuth providers (Google, Facebook), check email
+            if (profile?.email) {
+                const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
+                return allowedEmails.includes(profile.email);
+            }
+    
+            return false;
         },
         async session({ session, token }) {
-          if (session.user) {
-            session.user.email = token.email;
-          }
-          return session;
+            if (session.user) {
+                // Voeg email toe van token
+                session.user.email = token.email;
+                // Gebruik name als username als het beschikbaar is
+                if (token.name) {
+                    session.user.name = token.name;
+                }
+            }
+            return session;
         },
         async jwt({ token, account, profile }) {
-          if (account && profile) {
-            token.email = profile.email;
-          }
-          return token;
-        }
-      }
+            if (account && profile) {
+                token.email = profile.email;
+                if (profile.name) {
+                    token.name = profile.name;
+                }
+            }
+            return token;
+        },
+    }
 }
 
 const handler = NextAuth(authOptions);
