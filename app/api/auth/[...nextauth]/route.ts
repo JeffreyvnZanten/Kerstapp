@@ -76,25 +76,25 @@ const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async signIn({ account, profile }) {
-            // Als het credentials login is (geen account/profile), sta toe
-            if (!account) {
+        async signIn({ user, account, profile }) {
+            // Voor credentials login
+            if (account?.provider === 'credentials') {
                 return true;
             }
     
-            // Voor OAuth providers (Google, Facebook), check email
-            if (profile?.email) {
-                const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
-                return allowedEmails.includes(profile.email);
+            // Voor OAuth providers (Google, Facebook)
+            if (account?.provider === 'google' || account?.provider === 'facebook') {
+                if (profile?.email) {
+                    const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
+                    return allowedEmails.includes(profile.email);
+                }
             }
     
             return false;
         },
         async session({ session, token }) {
             if (session.user) {
-                // Voeg email toe van token
                 session.user.email = token.email;
-                // Gebruik name als username als het beschikbaar is
                 if (token.name) {
                     session.user.name = token.name;
                 }
@@ -109,7 +109,7 @@ const authOptions: NextAuthOptions = {
                 }
             }
             return token;
-        },
+        }
     }
 }
 
