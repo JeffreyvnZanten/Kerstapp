@@ -35,8 +35,8 @@ const authOptions: NextAuthOptions = {
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
             authorization: {
                 params: {
-                    scope: 'openid email profile' 
-                  }
+                    scope: 'email,public_profile'
+                }
             }
         }),
         CredentialsProvider({
