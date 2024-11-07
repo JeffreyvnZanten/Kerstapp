@@ -6,6 +6,7 @@ import ChristmasCountdown from './ChristmasCountdown'
 import Snowfall from 'react-snowfall'
 import LoginForm from './LoginForm'
 import Logout from './Logout'
+import NameDrawingEvent from './NameDrawingEvent'
 
 export default function Home() {
   const { data: session, status } = useSession()
@@ -32,7 +33,7 @@ export default function Home() {
         />
         <div className="flex flex-col items-center justify-center min-h-screen space-y-4 p-4">
           <div className="overlay-bg p-8 rounded-xl backdrop-blur-sm shadow-lg">
-            <ChristmasCountdown />
+            <NameDrawingEvent />
             <Logout />
           </div>
         </div>

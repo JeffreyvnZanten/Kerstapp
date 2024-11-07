@@ -3,12 +3,6 @@ import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import FacebookProvider from "next-auth/providers/facebook";
 
-
-console.log("Environment check:");
-console.log("NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
-console.log("USERS variable exists:", !!process.env.USERS);
-console.log("Raw USERS value:", process.env.USERS);
-
 declare module "next-auth" {
     interface Session {
         user: {
