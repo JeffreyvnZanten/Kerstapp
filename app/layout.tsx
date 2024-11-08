@@ -1,17 +1,22 @@
 // app/layout.tsx
-import Providers from "./Providers"
 import "./globals.css";
+import Providers from "./Providers"
+import XmasBackground from "./XmasBG";
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <XmasBackground>
+            {children}
+          </XmasBackground>
+        </Providers>
       </body>
     </html>
-  );
+  )
 }
