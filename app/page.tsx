@@ -6,7 +6,6 @@ import ChristmasCountdown from './ChristmasCountdown'
 import LoginForm from './LoginForm'
 import Logout from './Logout'
 import NameDrawingEvent from './NameDrawingEvent'
-import BottomNav from './BottomNav'
 
 export default function Home() {
   const { data: session, status } = useSession()
