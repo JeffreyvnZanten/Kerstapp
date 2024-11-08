@@ -4,7 +4,6 @@
 import { useSession } from 'next-auth/react'
 import ChristmasCountdown from './ChristmasCountdown'
 import LoginForm from './LoginForm'
-import Logout from './Logout'
 import NameDrawingEvent from './NameDrawingEvent'
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
     return (
       <div className="overlay-bg p-4 rounded-xl backdrop-blur-sm shadow-lg">
         <NameDrawingEvent />
-        <Logout />
       </div>
     )
   }
