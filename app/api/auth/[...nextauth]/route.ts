@@ -1,7 +1,6 @@
 import NextAuth, { DefaultSession, NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
-import FacebookProvider from "next-auth/providers/facebook";
 
 declare module "next-auth" {
     interface Session {
@@ -21,16 +20,6 @@ const authOptions: NextAuthOptions = {
                 params: {
                     scope: 'openid email profile' 
                   }
-            }
-        }),
-        // Voeg deze toe aan de providers array in authOptions:
-        FacebookProvider({
-            clientId: process.env.FACEBOOK_CLIENT_ID!,
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
-            authorization: {
-                params: {
-                    scope: 'email,public_profile'
-                }
             }
         }),
         CredentialsProvider({
