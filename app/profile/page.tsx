@@ -14,15 +14,16 @@ export default function ProfilePage() {
             <p className='text-white'>Naam: {session.user?.name}</p>
             <br />
             <ul className="text-white">Interesses
-                <li>* Koken</li>
+                <li>* Technologie</li>
+                <li>* Gezondheid</li>
                 <li>* Gamen</li>
             </ul>
             <button className="bg-red-800 text-white px-8 py-3 my-4 space-y-4 rounded-lg w-full font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"            >
                 Voeg toe
             </button>
             <ul className="text-white">Laatste bezigheden
-                <li>* Vogelhuisje maken</li>
-                <li>* Setjes maken voor Jumbo</li>
+                <li>* Android app voor supplementen</li>
+                <li>* Kerstloting digitale versie</li>
             </ul>
             <button className="bg-red-800 text-white px-8 py-3 my-4 space-y-4 rounded-lg w-full font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"            >
                 Voeg toe
