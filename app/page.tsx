@@ -6,6 +6,7 @@ import ChristmasCountdown from './ChristmasCountdown'
 import LoginForm from './LoginForm'
 import Logout from './Logout'
 import NameDrawingEvent from './NameDrawingEvent'
+import BottomNav from './BottomNav'
 
 export default function Home() {
   const { data: session, status } = useSession()
@@ -16,7 +17,7 @@ export default function Home() {
 
   if (session) {
     return (
-      <div className="overlay-bg p-8 rounded-xl backdrop-blur-sm shadow-lg">
+      <div className="overlay-bg p-4 rounded-xl backdrop-blur-sm shadow-lg">
         <NameDrawingEvent />
         <Logout />
       </div>
@@ -24,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <div className="overlay-bg p-8 rounded-xl backdrop-blur-sm shadow-lg">
+    <div className="overlay-bg p-4 rounded-xl backdrop-blur-sm shadow-lg">
       <ChristmasCountdown />
       <LoginForm />
     </div>

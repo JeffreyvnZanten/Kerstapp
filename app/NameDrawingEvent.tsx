@@ -6,7 +6,7 @@ export default function NameDrawingEvent() {
     const nameDrawingDate = new Date(now.getFullYear(), 10, 28);
     
     return(
-        <div className="space-y-4 mt-6 flex flex-col items-center">
+        <div className="space-y-4 mt-4 flex flex-col items-center">
             <Countdown
                 targetDate={nameDrawingDate}
                 title="Trekking begint over"

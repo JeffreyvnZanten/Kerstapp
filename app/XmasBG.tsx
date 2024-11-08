@@ -1,6 +1,7 @@
 // components/XmasBackground.tsx
 'use client'
 import Snowfall from 'react-snowfall'
+import BottomNav from './BottomNav'
 
 export default function XmasBackground({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +17,7 @@ export default function XmasBackground({ children }: { children: React.ReactNode
         }}
       />
       <div className="flex flex-col items-center justify-top min-h-screen space-y-4 p-4 z-index-1">
-          {children}
+          {children}          
       </div>
     </div>
   )
