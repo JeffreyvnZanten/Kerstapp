@@ -4,7 +4,7 @@ import React from "react";
 
 export default function BottomNav() {
     return (
-        <div className="fixed bottom-0 left-0 right-0 md:hidden overlay-bg backdrop-blur-sm p-3">
+        <div className="fixed bottom-0 left-0 right-0 md:hidden overlay-bg backdrop-blur-sm p-4">
             <div className="flex flex-row text-white justify-evenly items-center">
                 <Link href={"/"}>
                     <Image 
@@ -12,7 +12,7 @@ export default function BottomNav() {
                             alt="Home"
                             width={36}
                             height={36}
-                            className="w-5 h-5 invert"
+                            className="w-6 h-6 invert"
                     />
                 </Link>
                 <Link href={"/"}>
@@ -21,7 +21,7 @@ export default function BottomNav() {
                             alt="Home"
                             width={36}
                             height={36}
-                            className="w-6 h-6"
+                            className="w-7 h-7"
                     />
                 </Link>
             </div>
