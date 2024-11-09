@@ -22,13 +22,22 @@ export default function PersonalMenu() {
                         </button>
                         <p className="text-white">{session?.user?.name?.split(' ')[0]}</p>
                     </div>
-                    <Image 
-                        src="/icons/settings.svg"
-                        alt="Instellingen"
-                        width={24}
-                        height={24}
-                        className="w-7 h-7 opacity-70"
-                    />
+                    <div className="flex items-center gap-3"> {/* Container toegevoegd voor de icons */}
+                        <Image 
+                            src="/icons/notification.svg"
+                            alt="Notificaties"
+                            width={24}
+                            height={24}
+                            className="w-6 h-6 invert opacity-70"
+                        />
+                        <Image 
+                            src="/icons/settings.svg"
+                            alt="Instellingen"
+                            width={24}
+                            height={24}
+                            className="w-7 h-7 opacity-70"
+                        />
+                    </div>
                 </div>
             </div>
         )
