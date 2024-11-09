@@ -37,7 +37,7 @@ export default function Countdown({ targetDate, title }: CountdownProps) {
     }, [targetDate]);
 
     return (
-        <div className={`flex flex-col items-center justify-center text-center text-white ${style.font3}`}>
+        <div className={`flex flex-col items-center justify-center text-center text-white ${style.font2}`}>
             <div className="text-3xl font-bold mb-4">
                 {title}
             </div>
