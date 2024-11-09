@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react'
 
 export default function BottomNav() {
    const pathname = usePathname();
-   const { data: session, status } = useSession()
+   const { data: session } = useSession()
 
    if (session) {
     return (

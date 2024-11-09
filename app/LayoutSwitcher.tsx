@@ -3,18 +3,21 @@
 import { useState } from "react";
 import BottomNav from "./BottomNav";
 import PersonalMenu from "./PersonalMenu";
+import { useSession } from "next-auth/react";
 
 export default function LayoutSwitcher() {
-    const [navigationStyle, setNavigationStyle] = useState<'bottom' | 'personal'>('personal');
+    const [navigationStyle, setNavigationStyle] = useState<'bottom' | 'personal'>('bottom');
+    const { data: session } = useSession()
 
+    if(session)
     return (
         <>
-            <div className="fixed bottom-24 right-4 flex gap-2 z-50">
+            <div className="fixed bottom-20 right-4 flex gap-2 z-50">
                 <button 
                     onClick={() => setNavigationStyle('bottom')}
                     className={`px-4 py-2 rounded ${
                         navigationStyle === 'bottom' 
-                            ? 'bg-blue-500 text-white' 
+                            ? 'bg-red-800 text-white' 
                             : 'bg-gray-200 text-gray-700'
                     }`}
                 >
@@ -24,7 +27,7 @@ export default function LayoutSwitcher() {
                     onClick={() => setNavigationStyle('personal')}
                     className={`px-4 py-2 rounded ${
                         navigationStyle === 'personal' 
-                            ? 'bg-blue-500 text-white' 
+                            ? 'bg-red-800 text-white' 
                             : 'bg-gray-200 text-gray-700'
                     }`}
                 >

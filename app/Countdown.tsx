@@ -20,6 +20,11 @@ function calculateTimeLeft(targetDate: Date) {
   
 export default function Countdown({ targetDate, title }: CountdownProps) {
     const [timeLeft, setTimeLeft] = useState(targetDate ? calculateTimeLeft(targetDate) : null);
+    const style = {
+        font1 : "font-MoC",
+        font2 : "font-kranky",
+        font3: "font-cinzel"
+    };
 
     useEffect(() => {
         if (!targetDate) return;
@@ -32,7 +37,7 @@ export default function Countdown({ targetDate, title }: CountdownProps) {
     }, [targetDate]);
 
     return (
-        <div className="flex flex-col items-center justify-center text-center text-white">
+        <div className={`flex flex-col items-center justify-center text-center text-white ${style.font3}`}>
             <div className="text-3xl font-bold mb-4">
                 {title}
             </div>

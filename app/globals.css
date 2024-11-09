@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
 
 :root {
   --background: #ffffff;
@@ -12,15 +11,55 @@
   --christmas-gold: #B7791F;
 }
 
+@font-face {
+  font-family: 'GreatVibes';
+  src: url('/fonts/GreatVibes-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MoC';
+  src: url('/fonts/MountainsofChristmas-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Kranky';
+  src: url('/fonts/Kranky-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Mountains of Christmas', Arial, Helvetica, sans-serif;
+  /* font-family: 'GreatVibes'; */
 }
 
 /* Standaard voor desktop */
 .overlay-bg {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.font-MoC {
+  font-family: 'Moc';
+}
+
+.font-kranky {
+  font-family: 'Kranky';
+}
+
+.font-cinzel {
+  font-family: 'Cinzel';
 }
 
 /* iOS devices */
