@@ -66,7 +66,7 @@ const authOptions: NextAuthOptions = {
             }
     
             // Voor OAuth providers (Google, Facebook)
-            if (account?.provider === 'google' || account?.provider === 'facebook') {
+            if (account?.provider === 'google') {
                 if (profile?.email) {
                     const allowedEmails = process.env.EMAILS?.split(',').map(email => email.trim()) || [];
                     return allowedEmails.includes(profile.email);
