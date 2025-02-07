@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
-import CredentialsLogin from './CredentialsLogin'
+import CredentialsLogin from './CredentialsLoginForm'
 import DividerAuth from './DividerAuth'
 import GoogleLogin from './GoogleLogin'
 import FacebookLogin from './FacebookLogin'

@@ -1,8 +1,8 @@
 // app/layout.tsx
 import "./globals.css";
 import Providers from "./Providers"
-import XmasBackground from "./XmasBG";
-import LayoutSwitcher from "./LayoutSwitcher";
+import XmasBackground from "./components/XmasBG";
+import LayoutSwitcher from "./components/LayoutSwitcher";
 
 export default function RootLayout({
   children,

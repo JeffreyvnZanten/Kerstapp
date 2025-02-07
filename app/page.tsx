@@ -2,9 +2,9 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
-import ChristmasCountdown from './ChristmasCountdown'
+import ChristmasCountdown from './components/ChristmasCountdown'
 import LoginForm from './LoginForm'
-import NameDrawingEvent from './NameDrawingEvent'
+import NameDrawingEvent from './components/NameDrawingEvent'
 
 export default function Home() {
   const { data: session, status } = useSession()
